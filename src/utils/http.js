@@ -1,6 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
-import { optimize } from 'webpack';
+
 
 class HTTP {
     axiosPost(options){
@@ -10,7 +10,7 @@ class HTTP {
             header:{
                 'Content-Type':'application/x-www-form-urlencoded'
             },
-            data:qs.stringify(optimize.data)
+            data:qs.stringify(options.data)
         }).then((res)=>{
             options.success(res.data);
         }).catch((err)=>{

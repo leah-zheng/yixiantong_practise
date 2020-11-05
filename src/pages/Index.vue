@@ -7,6 +7,8 @@
 <script>
 import HomeHeader from 'components/Header/Home';
 import HomeScrollWrapper from 'components/ScrollWrapper/Index'
+
+
 export default {
     name:'Index',
     components:{
