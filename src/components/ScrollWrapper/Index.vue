@@ -1,11 +1,11 @@
 <template>
-    <div class="hmoe-scroll-wrapper" ref="wrapper">
-        <div class="wrapper-content">
+    <div class="scroll-wrapper" ref="wrapper">
+        <div class="scroll-content">
         <categroy-icons></categroy-icons>
         <home-title :title="homeTitle.viewTitle"></home-title>
         <view-list :viewDatas="homeDatas.viewDatas"></view-list>
         <home-title :title="homeTitle.foodTitle"></home-title>
-
+        <food-list :foodDatas="homeDatas.foodDatas"></food-list>
         <home-title :title="homeTitle.hotelTitle"></home-title>
 
         <home-title :title="homeTitle.massageTitle"></home-title>
@@ -22,13 +22,18 @@ import BetterScroll from 'better-scroll';
 import CategroyIcons from './CategroyIcons/Index';
 import HomeTitle from './Sub/HomeTitle';
 import ViewList from './ViewList/Index';
+import FoodList from './FoodList/Index';
+
+import tool from 'utils/tool';
+
 
 export default {
     name:'HomeScrollWrapper',
     components:{
         CategroyIcons,
         HomeTitle,
-        ViewList
+        ViewList,
+        FoodList
     },
     data(){
         return {
@@ -58,11 +63,11 @@ export default {
                 if(res && res.status === 0){
                     const data = res.data;
                     this.homeDatas.viewDatas = data.viewDatas;
-                    this.homeDatas.foodDatas = data.foodDatas;
+                    this.homeDatas.foodDatas = tool.formatJSON(data.foodDatas,'keyword');
                     this.homeDatas.hotelDatas = data.hotelDatas;
                     this.homeDatas.massageDatas = data.massageDatas;
                     this.homeDatas.ktvDatas = data.ktvDatas;
-                    
+                    console.log(this.homeDatas.foodDatas);
                 }
                 
             })
